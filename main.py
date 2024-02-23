@@ -11,15 +11,16 @@ def get_python_version() -> str:
 
 
 def start_new_order() -> Order:
-    order = Order()
-    return order
+    new_order = Order()
+    return new_order
 
 
 def get_sandwich(order: Order) -> None:
-    while order.sandwich_type == '':
+    while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:
             prompt += f'{en}, '
+        prompt = prompt.replace(f', {SandwichType.NOT_CHOSEN_YET}, ', '')
         prompt = prompt.removesuffix(', ') + ')?>'
 
         choice = input(prompt).lower().strip()
@@ -27,20 +28,20 @@ def get_sandwich(order: Order) -> None:
 
             case 'c':
                 order.sandwich_type = SandwichType.CHICKEN
-                order.sandwich_price = SandwichPrice.CHICKEN
+                order.sandwich_cost = SandwichPrice.CHICKEN.value
 
             case 'b':
                 order.sandwich_type = SandwichType.BEEF
-                order.sandwich_price = SandwichPrice.BEEF
+                order.sandwich_cost = SandwichPrice.BEEF.value
 
             case 't':
                 order.sandwich_type = SandwichType.TOFU
-                order.sandwich_price = SandwichPrice.TOFU
+                order.sandwich_cost = SandwichPrice.TOFU.value
 
             case other:
                 print(f'{choice} is not valid. Please try again.')
 
-    order.total_price = order.total_price + order.sandwich_price.value
+    order.total_price = order.total_price + order.sandwich_cost
 
 
 if __name__ == '__main__':
@@ -48,3 +49,4 @@ if __name__ == '__main__':
     order: Order = start_new_order()
     get_sandwich(order)
     print(f'After ordering a sandwich\n{order}')
+

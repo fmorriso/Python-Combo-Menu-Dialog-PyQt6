@@ -10,9 +10,9 @@ class Order():
         self.total_price: float = 0.0
         self.sandwich_type: SandwichType = SandwichType.NOT_CHOSEN_YET
         self.sandwich_cost: float = 0.0
-        self.beverage_type: str = ''
+        self.beverage_size: str = ''  # TODO: change to BeverageSize
         self.beverage_cost: float = 0.0
-        self.fries_size: str = ''
+        self.fries_size: str = ''  # TODO: change to FriesSize
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0
@@ -21,8 +21,7 @@ class Order():
         retval: str = f'Order Total: ${self.total_price:.2f}'
 
         # add sandwich information if one has been chosen
-        if self.sandwich_type != SandwichType.NOT_CHOSEN_YET:            
+        if self.sandwich_type != SandwichType.NOT_CHOSEN_YET:
             retval += f'\n\tSandwich: {self.sandwich_type} ${self.sandwich_cost:.2f}'
-        
+
         return retval
-    

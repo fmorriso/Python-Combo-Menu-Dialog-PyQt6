@@ -1,4 +1,4 @@
-from enum import Enum, StrEnum
+from enum import Enum
 
 
 class SandwichPrice(Enum):
@@ -7,7 +7,7 @@ class SandwichPrice(Enum):
     TOFU: float = 5.75
 
 
-class SandwichType(StrEnum):
+class SandwichType(Enum):
     CHICKEN = "Chicken"
     BEEF = "Beef"
     TOFU = "Tofu"

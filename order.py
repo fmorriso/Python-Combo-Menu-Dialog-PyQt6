@@ -22,6 +22,6 @@ class Order():
 
         # add sandwich information if one has been chosen
         if self.sandwich_type != SandwichType.NOT_CHOSEN_YET:
-            retval += f'\n\tSandwich: {self.sandwich_type} ${self.sandwich_cost:.2f}'
+            retval += f'\n\tSandwich: {self.sandwich_type.value} ${self.sandwich_cost:.2f}'
 
         return retval

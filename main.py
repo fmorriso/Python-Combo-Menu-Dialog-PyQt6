@@ -19,8 +19,8 @@ def get_sandwich(order: Order) -> None:
     while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:
-            prompt += f'{en}, '
-        prompt = prompt.replace(f', {SandwichType.NOT_CHOSEN_YET}, ', '')
+            prompt += f'{en.value}, '
+        prompt = prompt.replace(f', {SandwichType.NOT_CHOSEN_YET.value}, ', '')
         prompt = prompt.removesuffix(', ') + ')?>'
 
         choice = input(prompt).lower().strip()

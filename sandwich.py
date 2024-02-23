@@ -1,3 +1,5 @@
+# these are the sandwich types and prices using symbols instead
+# of "magic numbers" and "magic strings"
 from enum import Enum
 
 

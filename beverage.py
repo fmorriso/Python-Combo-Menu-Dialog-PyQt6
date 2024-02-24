@@ -7,7 +7,8 @@ class BeverageSize(Enum):
     SMALL: str = 'Small'
     MEDIUM: str = 'Medium'
     LARGE: str = 'Large'
-    NOT_YET_CHOSEN: str = 'Not Yet Chosen'
+    NONE: str = 'None'
+    NOT_CHOSEN_YET: str = 'Not Yet Chosen'
 
 
 class BeveragePrice(Enum):

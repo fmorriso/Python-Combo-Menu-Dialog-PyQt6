@@ -15,8 +15,8 @@ def start_new_order() -> Order:
     return new_order
 
 
-def get_sandwich(order: Order) -> None:
-    while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
+def get_sandwich(current_order: Order) -> None:
+    while current_order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:
             prompt += f'{en.value}, '
@@ -27,21 +27,21 @@ def get_sandwich(order: Order) -> None:
         match choice[:1]:
 
             case 'c':
-                order.sandwich_type = SandwichType.CHICKEN
-                order.sandwich_cost = SandwichPrice.CHICKEN.value
+                current_order.sandwich_type = SandwichType.CHICKEN
+                current_order.sandwich_cost = SandwichPrice.CHICKEN.value
 
             case 'b':
-                order.sandwich_type = SandwichType.BEEF
-                order.sandwich_cost = SandwichPrice.BEEF.value
+                current_order.sandwich_type = SandwichType.BEEF
+                current_order.sandwich_cost = SandwichPrice.BEEF.value
 
             case 't':
-                order.sandwich_type = SandwichType.TOFU
-                order.sandwich_cost = SandwichPrice.TOFU.value
+                current_order.sandwich_type = SandwichType.TOFU
+                current_order.sandwich_cost = SandwichPrice.TOFU.value
 
             case other:
                 print(f'{choice} is not valid. Please try again.')
 
-    order.total_price = order.total_price + order.sandwich_cost
+    current_order.total_price = current_order.total_price + current_order.sandwich_cost
 
 
 if __name__ == '__main__':

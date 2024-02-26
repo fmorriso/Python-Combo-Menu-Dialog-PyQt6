@@ -131,7 +131,7 @@ if __name__ == '__main__':
     # print(f'After ordering a sandwich\n{order}')
 
     get_beverage()
-    # print(f'After beverage selection\n{order}')
+    # print(f'After beverage selection\n{order}')n
 
     get_fries()
     print(f'After fries selection\n{order}')

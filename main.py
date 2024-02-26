@@ -83,7 +83,7 @@ def get_beverage() -> None:
         order.total_price += order.beverage_cost
 
 
-def get_fries():
+def get_fries() -> None:
     while order.fries_size == FriesSize.NOT_CHOSEN_YET:
         yesno = input('Do you want fries (y/n)?>').strip().lower()
         if yesno[:1] != 'y':

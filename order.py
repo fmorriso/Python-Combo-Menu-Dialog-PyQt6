@@ -5,7 +5,7 @@ from fries import FriesSize
 from sandwich import SandwichType
 
 
-class Order():
+class Order:
     KETCHUP_PACKET_COST: ClassVar[float] = 0.25
 
     def __init__(self):

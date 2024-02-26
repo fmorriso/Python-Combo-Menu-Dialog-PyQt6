@@ -124,6 +124,29 @@ def get_fries() -> None:
 
         order.total_price += order.fries_cost
 
+def get_ketchup_packets() -> None:
+    yesno = input('Do you want any ketchup packets?>')
+    if yesno is None or len(yesno) == 0:
+        return
+    yesno = yesno.strip().lower()[:1]
+    if yesno == 'n':
+        return
+    try:
+        n = int(input('How many ketchup packets?>'))
+    except ValueError:
+        print('Invalid response. zero assumed')
+        return
+
+    order.ketchup_packets = n
+    order.ketchup_cost = order.ketchup_packets * order.KETCHUP_PACKET_COST
+
+    order.total_price += order.ketchup_cost
+
+
+def check_for_discount():
+    if order.sandwich_cost > 0 and order.beverage_cost > 0 and order.fries_cost > 0:
+        order.total_price -= 1
+
 
 if __name__ == '__main__':
     print(f'Python version {get_python_version()}')
@@ -136,4 +159,10 @@ if __name__ == '__main__':
     # print(f'After beverage selection\n{order}')n
 
     get_fries()
-    print(f'After fries selection\n{order}')
+    # print(f'After fries selection\n{order}')
+
+    get_ketchup_packets()
+
+    check_for_discount()
+
+    print(f'Your order:\n{order}')

@@ -17,8 +17,8 @@ def start_new_order() -> Order:
     return new_order
 
 
-def get_sandwich(current_order: Order) -> None:
-    while current_order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
+def get_sandwich() -> None:
+    while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:
             prompt += f'{en.value}, '
@@ -29,28 +29,28 @@ def get_sandwich(current_order: Order) -> None:
         match choice[:1]:
 
             case 'c':
-                current_order.sandwich_type = SandwichType.CHICKEN
-                current_order.sandwich_cost = SandwichPrice.CHICKEN.value
+                order.sandwich_type = SandwichType.CHICKEN
+                order.sandwich_cost = SandwichPrice.CHICKEN.value
 
             case 'b':
-                current_order.sandwich_type = SandwichType.BEEF
-                current_order.sandwich_cost = SandwichPrice.BEEF.value
+                order.sandwich_type = SandwichType.BEEF
+                order.sandwich_cost = SandwichPrice.BEEF.value
 
             case 't':
-                current_order.sandwich_type = SandwichType.TOFU
-                current_order.sandwich_cost = SandwichPrice.TOFU.value
+                order.sandwich_type = SandwichType.TOFU
+                order.sandwich_cost = SandwichPrice.TOFU.value
 
             case other:
                 print(f'{choice} is not valid. Please try again.')
 
-    current_order.total_price = current_order.total_price + current_order.sandwich_cost
+    order.total_price = order.total_price + order.sandwich_cost
 
 
-def get_beverage(current_order: Order) -> None:
-    while current_order.beverage_size == BeverageSize.NOT_CHOSEN_YET:
+def get_beverage() -> None:
+    while order.beverage_size == BeverageSize.NOT_CHOSEN_YET:
         yesno = input('Do you want a beverage (y/n)?>').strip().lower()
         if yesno[:1] != 'y':
-            current_order.beverage_size = BeverageSize.NONE
+            order.beverage_size = BeverageSize.NONE
             return
 
         prompt = 'What size beverage would you like to order ('
@@ -65,29 +65,30 @@ def get_beverage(current_order: Order) -> None:
         match choice[:1]:
 
             case 's':
-                current_order.beverage_size = BeverageSize.SMALL
-                current_order.beverage_cost = BeveragePrice.SMALL.value
+                order.beverage_size = BeverageSize.SMALL
+                order.beverage_cost = BeveragePrice.SMALL.value
 
             case 'm':
-                current_order.beverage_size = BeverageSize.MEDIUM
-                current_order.beverage_cost = BeveragePrice.MEDIUM.value
+                order.beverage_size = BeverageSize.MEDIUM
+                order.beverage_cost = BeveragePrice.MEDIUM.value
 
             case 'l':
-                current_order.beverage_size = BeverageSize.LARGE
-                current_order.beverage_cost = BeveragePrice.LARGE.value
+                order.beverage_size = BeverageSize.LARGE
+                order.beverage_cost = BeveragePrice.LARGE.value
 
             case other:
                 print(f'{choice} is not valid. Please try again.')
 
-        current_order.total_price += current_order.beverage_cost
+        order.total_price += order.beverage_cost
+
 
 
 if __name__ == '__main__':
     print(f'Python version {get_python_version()}')
     order: Order = start_new_order()
 
-    get_sandwich(order)
+    get_sandwich()
     print(f'After ordering a sandwich\n{order}')
 
-    get_beverage(order)
+    get_beverage()
     print(f'After beverage selection\n{order}')

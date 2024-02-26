@@ -18,6 +18,7 @@ class Order:
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0
+        self.discount: bool = False
 
     def __str__(self):
         retval: str = f'Order Total: ${self.total_price:.2f}'
@@ -41,5 +42,15 @@ class Order:
                 retval += 'None'
             else:
                 retval += f'{self.fries_size.value} ${self.fries_cost:.2f}'
+
+        # ketchup packets
+        if self.ketchup_packets == 0:
+            retval += '\n\tKetchup packets: None'
+        else:
+            retval += f'\n\tKetchup packets: {self.ketchup_packets}  ${self.ketchup_cost:.2f}'
+
+        # show discount applied
+        if self.discount:
+            retval += '\n\t*** $1 discount applied'
 
         return retval

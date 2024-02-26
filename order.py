@@ -1,6 +1,7 @@
 from typing import ClassVar
 
 from beverage import BeverageSize
+from fries import FriesSize
 from sandwich import SandwichType
 
 
@@ -13,7 +14,7 @@ class Order():
         self.sandwich_cost: float = 0.0
         self.beverage_size: BeverageSize = BeverageSize.NOT_CHOSEN_YET
         self.beverage_cost: float = 0.0
-        self.fries_size: str = ''  # TODO: change to FriesSize
+        self.fries_size: FriesSize = FriesSize.NOT_CHOSEN_YET
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0
@@ -32,5 +33,13 @@ class Order():
                 retval += 'None'
             else:
                 retval += f'{self.beverage_size.value} ${self.beverage_cost:.2f}'
+
+        # fires information if available
+        if self.fries_size != FriesSize.NOT_CHOSEN_YET:
+            retval += f'\n\tFries: '
+            if self.fries_size == FriesSize.NONE:
+                retval += 'None'
+            else:
+                retval += f'{self.fries_size.value} ${self.fries_cost:.2f}'
 
         return retval

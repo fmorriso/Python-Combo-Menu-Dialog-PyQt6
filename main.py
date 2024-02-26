@@ -4,6 +4,7 @@
 import sys
 
 from beverage import *
+from fries import *
 from order import Order
 from sandwich import *
 
@@ -82,13 +83,51 @@ def get_beverage() -> None:
         order.total_price += order.beverage_cost
 
 
+def get_fries():
+    while order.fries_size == FriesSize.NOT_CHOSEN_YET:
+        yesno = input('Do you want fries (y/n)?>').strip().lower()
+        if yesno[:1] != 'y':
+            order.fries_size = FriesSize.NONE
+            return
+
+        prompt = 'What size fries would you like to order ('
+        for size in FriesSize:
+            prompt += f'{size.value}, '
+
+        prompt = prompt.replace(f', {FriesSize.NOT_CHOSEN_YET.value}, ', '')
+        prompt = prompt.replace(f', {FriesSize.NONE.value}', '')
+        prompt = prompt.removesuffix(', ') + ')?>'
+
+        choice = input(prompt).lower().strip()
+        match choice[:1]:
+
+            case 's':
+                order.fries_size = FriesSize.SMALL
+                order.fries_cost = FriesPrice.SMALL.value
+
+            case 'm':
+                order.fries_size = FriesSize.MEDIUM
+                order.fries_cost = FriesPrice.MEDIUM.value
+
+            case 'l':
+                order.fries_size = FriesSize.LARGE
+                order.fries_cost = FriesPrice.LARGE.value
+
+            case other:
+                print(f'{choice} is not valid. Please try again.')
+
+        order.total_price += order.fries_cost
+
 
 if __name__ == '__main__':
     print(f'Python version {get_python_version()}')
     order: Order = start_new_order()
 
     get_sandwich()
-    print(f'After ordering a sandwich\n{order}')
+    # print(f'After ordering a sandwich\n{order}')
 
     get_beverage()
-    print(f'After beverage selection\n{order}')
+    # print(f'After beverage selection\n{order}')
+
+    get_fries()
+    print(f'After fries selection\n{order}')

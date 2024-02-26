@@ -25,8 +25,12 @@ class Order():
         if self.sandwich_type != SandwichType.NOT_CHOSEN_YET:
             retval += f'\n\tSandwich: {self.sandwich_type.value} ${self.sandwich_cost:.2f}'
 
-        # add beverage information if one has been chosen:
-        if self.beverage_size != BeverageSize.NOT_CHOSEN_YET and self.beverage_size != BeverageSize.NONE:
-            retval += f'\n\tBeverage: {self.beverage_size.value} ${self.beverage_cost:.2f}'
+        # add beverage information if available
+        if self.beverage_size != BeverageSize.NOT_CHOSEN_YET:
+            retval += f'\n\tBeverage: '
+            if self.beverage_size == BeverageSize.NONE:
+                retval += 'None'
+            else:
+                retval += f'{self.beverage_size.value} ${self.beverage_cost:.2f}'
 
         return retval

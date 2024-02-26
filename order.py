@@ -18,9 +18,10 @@ class Order:
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0
-        self.discount: bool = False
+        self.discount_applied: bool = False
 
     def __str__(self):
+        """Print a human-readable representation of the Order"""
         retval: str = f'Order Total: ${self.total_price:.2f}'
 
         # add sandwich information if one has been chosen
@@ -49,8 +50,8 @@ class Order:
         else:
             retval += f'\n\tKetchup packets: {self.ketchup_packets}  ${self.ketchup_cost:.2f}'
 
-        # show discount applied
-        if self.discount:
-            retval += '\n\t*** $1 discount applied'
+        # show discount was applied if applicable
+        if self.discount_applied:
+            retval += '\n\t*** $1 discount applied ***'
 
         return retval

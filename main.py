@@ -146,7 +146,7 @@ def get_ketchup_packets() -> None:
 def check_for_discount():
     if order.sandwich_cost > 0 and order.beverage_cost > 0 and order.fries_cost > 0:
         order.total_price -= 1
-        order.discount = True
+        order.discount_applied = True
 
 
 if __name__ == '__main__':

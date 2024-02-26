@@ -28,3 +28,10 @@ Add the following features to your first iteration:
      * If the user inputs yes to mega-size, give them large fries at the large fries price instead of their small fries.
 * Have the program output the user’s fries selection to verify that the program is working correctly.
 * Adjust the program so the total cost only outputs to the user after their sandwich, drink, and fries selection.
+### Iteration 4
+* Ask the user how many ketchup packets they would like (enter a positive integer; cost is $0.25 per packet).
+
+* After ordering the sandwich, drink, fries, and ketchup packets:
+  * If the user selected a sandwich, french fries, and a beverage, reduce the total cost of the order by $1.00.
+  * The program informs the user of their menu selections, for only the items they ordered. 
+  * The program should print the total cost of the order. Remove any other totals before this point.

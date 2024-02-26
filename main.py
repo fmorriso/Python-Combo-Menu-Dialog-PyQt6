@@ -19,6 +19,8 @@ def start_new_order() -> Order:
 
 
 def get_sandwich() -> None:
+    # sandwich is mandatory, so trap user in a loop
+    # until they make a proper sandwich choice.
     while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:

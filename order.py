@@ -12,7 +12,7 @@ class Order:
         self.total_price: float = 0.0
         self.sandwich_type: SandwichType = None
         self.sandwich_cost: float = 0.0
-        self.beverage_size: BeverageSize = BeverageSize.NOT_CHOSEN_YET
+        self.beverage_size: BeverageSize = None
         self.beverage_cost: float = 0.0
         self.fries_size: FriesSize = FriesSize.NOT_CHOSEN_YET
         self.fries_cost: float = 0.0
@@ -25,16 +25,16 @@ class Order:
         retval: str = f'Order Total: ${self.total_price:.2f}'
 
         # add sandwich information if one has been chosen
-        if self.sandwich_type != SandwichType.NOT_CHOSEN_YET:
+        if self.sandwich_type is not None:
             retval += f'\n\tSandwich: {self.sandwich_type.value} ${self.sandwich_cost:.2f}'
 
         # add beverage information if available
-        if self.beverage_size != BeverageSize.NOT_CHOSEN_YET:
-            retval += f'\n\tBeverage: '
-            if self.beverage_size == BeverageSize.NONE:
-                retval += 'None'
-            else:
-                retval += f'{self.beverage_size.value} ${self.beverage_cost:.2f}'
+        # if self.beverage_size is not None:
+        retval += f'\n\tBeverage: '
+        if self.beverage_size is None:
+            retval += 'None'
+        else:
+            retval += f'{self.beverage_size.value} ${self.beverage_cost:.2f}'
 
         # fires information if available
         if self.fries_size != FriesSize.NOT_CHOSEN_YET:

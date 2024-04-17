@@ -29,13 +29,13 @@ def get_sandwich() -> None:
     for en in SandwichType:
         types.append(en.value)
     for en in SandwichPrice:
-        prices.append(f'${en.value}')
+        prices.append(f'${en.value:.2f}')
     for i in range(len(types)):
         choices.append( f'{types[i]} {prices[i]}' )
 
     choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
     choice = choice.lower()[0]
-    print(f'choice={choice}')
+    # print(f'choice={choice}')
     match choice:
 
         case 'c':
@@ -50,46 +50,51 @@ def get_sandwich() -> None:
             order.sandwich_type = SandwichType.TOFU
             order.sandwich_cost = SandwichPrice.TOFU.value
 
-        case other:
+        case _:
             print(f'{choice} is not valid. Please try again.')
 
     order.total_price = order.total_price + order.sandwich_cost
 
 
 def get_beverage() -> None:
-    while order.beverage_size == BeverageSize.NOT_CHOSEN_YET:
-        yesno = input('Do you want a beverage (y/n)?>').strip().lower()
-        if yesno[:1] != 'y':
-            order.beverage_size = BeverageSize.NONE
-            return
+    yesno = InputUtils.get_yesno_response("Do you want a beverage?", "Beverage")
+    if not yesno:
+        order.beverage_size = None
+        return
 
-        prompt = 'What size beverage would you like to order ('
-        for size in BeverageSize:
-            prompt += f'{size.value}, '
+    prompt = 'What size beverage would you like to order?'
+    choices: list[str] = []
+    sizes: list[str] = []
+    prices: list[str] = []
+    for en in BeverageSize:
+        sizes.append(en.value)
+    for en in BeveragePrice:
+        prices.append(f'${en.value:.2f}')
+    # print(f'{prices}=')
+    for i in range(len(sizes)):
+        choices.append( f'{sizes[i]} {prices[i]}' )
 
-        prompt = prompt.replace(f', {BeverageSize.NOT_CHOSEN_YET.value}, ', '')
-        prompt = prompt.replace(f', {BeverageSize.NONE.value}', '')
-        prompt = prompt.removesuffix(', ') + ')?>'
+    # choice = input(prompt).lower().strip()
+    choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
+    choice = choice.lower()[0]
+    match choice:
 
-        choice = input(prompt).lower().strip()
-        match choice[:1]:
+        case 's':
+            order.beverage_size = BeverageSize.SMALL
+            order.beverage_cost = BeveragePrice.SMALL.value
 
-            case 's':
-                order.beverage_size = BeverageSize.SMALL
-                order.beverage_cost = BeveragePrice.SMALL.value
+        case 'm':
+            order.beverage_size = BeverageSize.MEDIUM
+            order.beverage_cost = BeveragePrice.MEDIUM.value
 
-            case 'm':
-                order.beverage_size = BeverageSize.MEDIUM
-                order.beverage_cost = BeveragePrice.MEDIUM.value
+        case 'l':
+            order.beverage_size = BeverageSize.LARGE
+            order.beverage_cost = BeveragePrice.LARGE.value
 
-            case 'l':
-                order.beverage_size = BeverageSize.LARGE
-                order.beverage_cost = BeveragePrice.LARGE.value
+        case other:
+            print(f'{choice} is not valid. Please try again.')
 
-            case other:
-                print(f'{choice} is not valid. Please try again.')
-
-        order.total_price += order.beverage_cost
+    order.total_price += order.beverage_cost
 
 
 def get_fries() -> None:

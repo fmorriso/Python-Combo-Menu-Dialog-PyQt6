@@ -13,4 +13,4 @@ class SandwichType(Enum):
     CHICKEN = "Chicken"
     BEEF = "Beef"
     TOFU = "Tofu"
-    NOT_CHOSEN_YET = "Not yet chosen"
+

@@ -10,7 +10,7 @@ class Order:
 
     def __init__(self):
         self.total_price: float = 0.0
-        self.sandwich_type: SandwichType = SandwichType.NOT_CHOSEN_YET
+        self.sandwich_type: SandwichType = None
         self.sandwich_cost: float = 0.0
         self.beverage_size: BeverageSize = BeverageSize.NOT_CHOSEN_YET
         self.beverage_cost: float = 0.0

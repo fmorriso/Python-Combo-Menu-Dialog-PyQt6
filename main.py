@@ -22,39 +22,36 @@ def start_new_order() -> Order:
 def get_sandwich() -> None:
     # sandwich is mandatory, so trap user in a loop
     # until they make a proper sandwich choice.
-    while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
-        """
-        prompt: str = 'Which sandwich would you like to order ('
-        for en in SandwichType:
-            prompt += f'{en.value}, '
-        prompt = prompt.replace(f', {SandwichType.NOT_CHOSEN_YET.value}, ', '')
-        prompt = prompt.removesuffix(', ') + ')?>'    
+    prompt: str = "Which sandwich would you like to order?"
+    choices: list[str] = []
+    types: list[str] = []
+    prices: list[str] = []
+    for en in SandwichType:
+        types.append(en.value)
+    for en in SandwichPrice:
+        prices.append(f'${en.value}')
+    for i in range(len(types)):
+        choices.append( f'{types[i]} {prices[i]}' )
 
-        choice = input(prompt).lower().strip()
-        """
-        prompt: str = "Which sandwich would you like to order?"
-        choices: list[str] = []
-        for en in SandwichType:
-            choices.append(en.value)
-        choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
-        choice = choice.lower()[0]
-        print(f'choice={choice}')
-        match choice:
+    choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
+    choice = choice.lower()[0]
+    print(f'choice={choice}')
+    match choice:
 
-            case 'c':
-                order.sandwich_type = SandwichType.CHICKEN
-                order.sandwich_cost = SandwichPrice.CHICKEN.value
+        case 'c':
+            order.sandwich_type = SandwichType.CHICKEN
+            order.sandwich_cost = SandwichPrice.CHICKEN.value
 
-            case 'b':
-                order.sandwich_type = SandwichType.BEEF
-                order.sandwich_cost = SandwichPrice.BEEF.value
+        case 'b':
+            order.sandwich_type = SandwichType.BEEF
+            order.sandwich_cost = SandwichPrice.BEEF.value
 
-            case 't':
-                order.sandwich_type = SandwichType.TOFU
-                order.sandwich_cost = SandwichPrice.TOFU.value
+        case 't':
+            order.sandwich_type = SandwichType.TOFU
+            order.sandwich_cost = SandwichPrice.TOFU.value
 
-            case other:
-                print(f'{choice} is not valid. Please try again.')
+        case other:
+            print(f'{choice} is not valid. Please try again.')
 
     order.total_price = order.total_price + order.sandwich_cost
 

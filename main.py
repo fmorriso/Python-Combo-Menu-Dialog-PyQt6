@@ -1,10 +1,11 @@
-# Project 3.1.3 - Combo Menu - Simple
+# Project 3.1.3 - Combo Menu - Simple using PyQT for dialogs
 # Author: Fred Morrison
 
 import sys
 
 from beverage import *
 from fries import *
+from input_utilities import InputUtils
 from order import Order
 from sandwich import *
 
@@ -22,14 +23,23 @@ def get_sandwich() -> None:
     # sandwich is mandatory, so trap user in a loop
     # until they make a proper sandwich choice.
     while order.sandwich_type == SandwichType.NOT_CHOSEN_YET:
+        """
         prompt: str = 'Which sandwich would you like to order ('
         for en in SandwichType:
             prompt += f'{en.value}, '
         prompt = prompt.replace(f', {SandwichType.NOT_CHOSEN_YET.value}, ', '')
-        prompt = prompt.removesuffix(', ') + ')?>'
+        prompt = prompt.removesuffix(', ') + ')?>'    
 
         choice = input(prompt).lower().strip()
-        match choice[:1]:
+        """
+        prompt: str = "Which sandwich would you like to order?"
+        choices: list[str] = []
+        for en in SandwichType:
+            choices.append(en.value)
+        choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
+        choice = choice.lower()[0]
+        print(f'choice={choice}')
+        match choice:
 
             case 'c':
                 order.sandwich_type = SandwichType.CHICKEN

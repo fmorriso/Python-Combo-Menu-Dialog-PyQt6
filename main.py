@@ -91,7 +91,7 @@ def get_beverage() -> None:
             order.beverage_size = BeverageSize.LARGE
             order.beverage_cost = BeveragePrice.LARGE.value
 
-        case other:
+        case _:
             print(f'{choice} is not valid. Please try again.')
 
     order.total_price += order.beverage_cost
@@ -103,16 +103,20 @@ def get_fries() -> None:
         order.fries_size = None
         return
 
-    prompt = 'What size fries would you like to order ('
+    prompt = 'What size fries would you like to order?'
+    choices: list[str] = []
+    sizes: list[str] = []
+    prices: list[str] = []
     for size in FriesSize:
-        prompt += f'{size.value}, '
+        sizes.append(size.value)
+    for price in FriesPrice:
+        prices.append(f'${price.value:.2f}')
+    for i in range(len(sizes)):
+        choices.append(f'{sizes[i]} {prices[i]}')
 
-    prompt = prompt.replace(f', {FriesSize.NOT_CHOSEN_YET.value}, ', '')
-    prompt = prompt.replace(f', {FriesSize.NONE.value}', '')
-    prompt = prompt.removesuffix(', ') + ')?>'
-
-    choice = input(prompt).lower().strip()
-    match choice[:1]:
+    choice = InputUtils.get_single_choice("Fries Choice", prompt, choices)
+    choice = choice.lower()[0]
+    match choice:
 
         case 's':
             order.fries_size = FriesSize.SMALL

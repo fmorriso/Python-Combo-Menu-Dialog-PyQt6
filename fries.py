@@ -7,8 +7,6 @@ class FriesSize(Enum):
     SMALL: str = 'Small'
     MEDIUM: str = 'Medium'
     LARGE: str = 'Large'
-    NONE: str = 'None'
-    NOT_CHOSEN_YET: str = 'Not Yet Chosen'
 
 
 class FriesPrice(Enum):

@@ -14,7 +14,7 @@ class Order:
         self.sandwich_cost: float = 0.0
         self.beverage_size: BeverageSize = None
         self.beverage_cost: float = 0.0
-        self.fries_size: FriesSize = FriesSize.NOT_CHOSEN_YET
+        self.fries_size: FriesSize = None
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0
@@ -37,12 +37,11 @@ class Order:
             retval += f'{self.beverage_size.value} ${self.beverage_cost:.2f}'
 
         # fires information if available
-        if self.fries_size != FriesSize.NOT_CHOSEN_YET:
-            retval += f'\n\tFries: '
-            if self.fries_size == FriesSize.NONE:
-                retval += 'None'
-            else:
-                retval += f'{self.fries_size.value} ${self.fries_cost:.2f}'
+        retval += f'\n\tFries: '
+        if self.fries_size is None:
+            retval += 'None'
+        else:
+            retval += f'{self.fries_size.value} ${self.fries_cost:.2f}'
 
         # ketchup packets
         if self.ketchup_packets == 0:

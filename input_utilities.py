@@ -58,12 +58,12 @@ class InputUtils:
         app = QApplication(sys.argv)
 
         msgBox = QMessageBox()
-        msgBox.setText(title)
+        msgBox.setWindowTitle(title)
         msgBox.setInformativeText(question)
         msgBox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         msgBox.setDefaultButton(QMessageBox.StandardButton.Yes)
+        msgBox.setIcon(QMessageBox.Icon.Question)
         ret = msgBox.exec()
-        # print(f'ret={ret == QMessageBox.StandardButton.Yes}')
 
         app.closeAllWindows()
         app.exit()

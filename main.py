@@ -31,7 +31,7 @@ def get_sandwich() -> None:
     for en in SandwichPrice:
         prices.append(f'${en.value:.2f}')
     for i in range(len(types)):
-        choices.append( f'{types[i]} {prices[i]}' )
+        choices.append(f'{types[i]} {prices[i]}')
 
     choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
     choice = choice.lower()[0]
@@ -72,7 +72,7 @@ def get_beverage() -> None:
         prices.append(f'${en.value:.2f}')
     # print(f'{prices}=')
     for i in range(len(sizes)):
-        choices.append( f'{sizes[i]} {prices[i]}' )
+        choices.append(f'{sizes[i]} {prices[i]}')
 
     # choice = input(prompt).lower().strip()
     choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
@@ -98,51 +98,54 @@ def get_beverage() -> None:
 
 
 def get_fries() -> None:
-    while order.fries_size == FriesSize.NOT_CHOSEN_YET:
-        yesno = input('Do you want fries (y/n)?>').strip().lower()
-        if yesno[:1] != 'y':
-            order.fries_size = FriesSize.NONE
-            return
+    yesno = InputUtils.get_yesno_response('Do you want fries?', 'French Fries')
+    if not yesno:
+        order.fries_size = None
+        return
 
-        prompt = 'What size fries would you like to order ('
-        for size in FriesSize:
-            prompt += f'{size.value}, '
+    prompt = 'What size fries would you like to order ('
+    for size in FriesSize:
+        prompt += f'{size.value}, '
 
-        prompt = prompt.replace(f', {FriesSize.NOT_CHOSEN_YET.value}, ', '')
-        prompt = prompt.replace(f', {FriesSize.NONE.value}', '')
-        prompt = prompt.removesuffix(', ') + ')?>'
+    prompt = prompt.replace(f', {FriesSize.NOT_CHOSEN_YET.value}, ', '')
+    prompt = prompt.replace(f', {FriesSize.NONE.value}', '')
+    prompt = prompt.removesuffix(', ') + ')?>'
 
-        choice = input(prompt).lower().strip()
-        match choice[:1]:
+    choice = input(prompt).lower().strip()
+    match choice[:1]:
 
-            case 's':
-                order.fries_size = FriesSize.SMALL
-                order.fries_cost = FriesPrice.SMALL.value
-                yesno = input('Do you want to super-size to large size?>').strip().lower()
-                if yesno[:1] == 'y':
-                    order.fries_size = FriesSize.LARGE
-                    order.fries_cost = FriesPrice.LARGE.value
-
-            case 'm':
-                order.fries_size = FriesSize.MEDIUM
-                order.fries_cost = FriesPrice.MEDIUM.value
-
-            case 'l':
+        case 's':
+            order.fries_size = FriesSize.SMALL
+            order.fries_cost = FriesPrice.SMALL.value
+            yesno = input('Do you want to super-size to large size?>').strip().lower()
+            if yesno[:1] == 'y':
                 order.fries_size = FriesSize.LARGE
                 order.fries_cost = FriesPrice.LARGE.value
 
-            case other:
-                print(f'{choice} is not valid. Please try again.')
+        case 'm':
+            order.fries_size = FriesSize.MEDIUM
+            order.fries_cost = FriesPrice.MEDIUM.value
 
-        order.total_price += order.fries_cost
+        case 'l':
+            order.fries_size = FriesSize.LARGE
+            order.fries_cost = FriesPrice.LARGE.value
+
+        case other:
+            print(f'{choice} is not valid. Please try again.')
+
+    order.total_price += order.fries_cost
+
 
 def get_ketchup_packets() -> None:
-    yesno = input('Do you want any ketchup packets?>')
-    if yesno is None or len(yesno) == 0:
+    # yesno = input('Do you want any ketchup packets?>')
+    # if yesno is None or len(yesno) == 0:
+    #     return
+    # yesno = yesno.strip().lower()[:1]
+    # if yesno == 'n':
+    yesno = InputUtils.get_yesno_response("Do you want any ketchup packets?", "Ketchup Packets")
+    if not yesno:
         return
-    yesno = yesno.strip().lower()[:1]
-    if yesno == 'n':
-        return
+
     try:
         n = int(input('How many ketchup packets?>'))
     except ValueError:

@@ -26,10 +26,10 @@ def get_sandwich() -> None:
     choices: list[str] = []
     types: list[str] = []
     prices: list[str] = []
-    for en in SandwichType:
-        types.append(en.value)
-    for en in SandwichPrice:
-        prices.append(f'${en.value:.2f}')
+    for type in SandwichType:
+        types.append(type.value)
+    for price in SandwichPrice:
+        prices.append(f'${price.value:.2f}')
     for i in range(len(types)):
         choices.append(f'{types[i]} {prices[i]}')
 
@@ -66,11 +66,10 @@ def get_beverage() -> None:
     choices: list[str] = []
     sizes: list[str] = []
     prices: list[str] = []
-    for en in BeverageSize:
-        sizes.append(en.value)
-    for en in BeveragePrice:
-        prices.append(f'${en.value:.2f}')
-    # print(f'{prices}=')
+    for size in BeverageSize:
+        sizes.append(size.value)
+    for price in BeveragePrice:
+        prices.append(f'${price.value:.2f}')
     for i in range(len(sizes)):
         choices.append(f'{sizes[i]} {prices[i]}')
 

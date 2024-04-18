@@ -22,7 +22,7 @@ class Order:
 
     def __str__(self):
         """Print a human-readable representation of the Order"""
-        retval: str = f'Order Total: ${self.total_price:.2f}'
+        retval: str = ''
 
         # add sandwich information if one has been chosen
         if self.sandwich_type is not None:
@@ -51,6 +51,8 @@ class Order:
 
         # show discount was applied if applicable
         if self.discount_applied:
-            retval += '\n\t*** $1 discount applied ***'
+            retval += '\n\t*** $1 combo discount applied ***'
+
+        retval += f'\nOrder Total: ${self.total_price:.2f}'
 
         return retval

@@ -121,8 +121,8 @@ def get_fries() -> None:
         case 's':
             order.fries_size = FriesSize.SMALL
             order.fries_cost = FriesPrice.SMALL.value
-            yesno = input('Do you want to super-size to large size?>').strip().lower()
-            if yesno[:1] == 'y':
+            yesno = InputUtils.get_yesno_response('Do you want to super-size to Large fries?', 'Super-size')
+            if yesno:
                 order.fries_size = FriesSize.LARGE
                 order.fries_cost = FriesPrice.LARGE.value
 

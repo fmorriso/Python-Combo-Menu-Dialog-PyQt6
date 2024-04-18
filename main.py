@@ -141,20 +141,11 @@ def get_fries() -> None:
 
 
 def get_ketchup_packets() -> None:
-    # yesno = input('Do you want any ketchup packets?>')
-    # if yesno is None or len(yesno) == 0:
-    #     return
-    # yesno = yesno.strip().lower()[:1]
-    # if yesno == 'n':
     yesno = InputUtils.get_yesno_response("Do you want any ketchup packets?", "Ketchup Packets")
     if not yesno:
         return
 
-    try:
-        n = int(input('How many ketchup packets?>'))
-    except ValueError:
-        print('Invalid response. zero assumed')
-        return
+    n = InputUtils.get_whole_number( 'How many ketchup packets?', 'Ketchup Packets')
 
     order.ketchup_packets = n
     order.ketchup_cost = order.ketchup_packets * order.KETCHUP_PACKET_COST

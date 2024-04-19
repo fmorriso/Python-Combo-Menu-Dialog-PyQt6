@@ -10,11 +10,11 @@ class Order:
 
     def __init__(self):
         self.total_price: float = 0.0
-        self.sandwich_type: SandwichType = None
+        self.sandwich_type: SandwichType | None = None
         self.sandwich_cost: float = 0.0
-        self.beverage_size: BeverageSize = None
+        self.beverage_size: BeverageSize | None = None
         self.beverage_cost: float = 0.0
-        self.fries_size: FriesSize = None
+        self.fries_size: FriesSize | None = None
         self.fries_cost: float = 0.0
         self.ketchup_packets: int = 0
         self.ketchup_cost: float = 0.0

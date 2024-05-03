@@ -22,6 +22,7 @@ def start_new_order() -> Order:
 def get_sandwich() -> None:
     # sandwich is mandatory, so trap user in a loop
     # until they make a proper sandwich choice.
+    title: str = "Sandwich Choice"
     prompt: str = "Which sandwich would you like to order?"
     choices: list[str] = []
     types: list[str] = []
@@ -33,7 +34,7 @@ def get_sandwich() -> None:
     for i in range(len(types)):
         choices.append(f'{types[i]} {prices[i]}')
 
-    choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
+    choice = InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     # print(f'choice={choice}')
     match choice:
@@ -62,7 +63,8 @@ def get_beverage() -> None:
         order.beverage_size = None
         return
 
-    prompt = 'What size beverage would you like to order?'
+    title: str = 'Sandwich Choice'
+    prompt: str = 'What size beverage would you like to order?'
     choices: list[str] = []
     sizes: list[str] = []
     prices: list[str] = []
@@ -74,7 +76,7 @@ def get_beverage() -> None:
         choices.append(f'{sizes[i]} {prices[i]}')
 
     # choice = input(prompt).lower().strip()
-    choice = InputUtils.get_single_choice("Sandwich Choice", prompt, choices)
+    choice = InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     match choice:
 
@@ -102,6 +104,7 @@ def get_fries() -> None:
         order.fries_size = None
         return
 
+    title: str = 'Fries Choice'
     prompt = 'What size fries would you like to order?'
     choices: list[str] = []
     sizes: list[str] = []
@@ -113,7 +116,7 @@ def get_fries() -> None:
     for i in range(len(sizes)):
         choices.append(f'{sizes[i]} {prices[i]}')
 
-    choice = InputUtils.get_single_choice("Fries Choice", prompt, choices)
+    choice = InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     match choice:
 
@@ -144,7 +147,7 @@ def get_ketchup_packets() -> None:
     if not yesno:
         return
 
-    n = InputUtils.get_whole_number( 'How many ketchup packets?', 'Ketchup Packets')
+    n: int = InputUtils.get_whole_number( 'How many ketchup packets?', 'Ketchup Packets')
 
     order.ketchup_packets = n
     order.ketchup_cost = order.ketchup_packets * order.KETCHUP_PACKET_COST

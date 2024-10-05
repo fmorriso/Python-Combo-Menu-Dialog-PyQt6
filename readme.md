@@ -1,9 +1,14 @@
 # PLTW Project 3.1.1 Combo Menu using PyQt for prompts and messages
+
 ## Tools Used
-* PyCharm 2024.1
-* Python 3.12.3
-* VSCode 1.88.1
-* PyQt6 6.6.1
+
+| Tool    |  Version |
+|:--------|---------:|
+| Python  |   3.12.6 |
+| VSCode  |   1.94.0 |
+| PyCharm | 2024.2.1 |
+| PyQt6   |    6.7.1 |
+
 ## References
 * [PLTW Project 3.1.3](https://pltw.read.inkling.com/a/b/71ce293152cf4873b7395f3d59c64a57/p/667ce0d0f6bf463a8c2a3bcb4c2aa687)
 * [PyQT Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/                                                                                                                                         )

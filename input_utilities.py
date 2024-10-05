@@ -6,9 +6,6 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
 
-# from PyQt6.QtWidgets.QDialogButtonBox import StandardButton
-
-
 class InputUtils:
     @staticmethod
     def get_whole_number(title: str, msg: str, parent=None) -> int:

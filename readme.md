@@ -19,11 +19,14 @@
 ## References
 * [PLTW Project 3.1.3](https://pltw.read.inkling.com/a/b/71ce293152cf4873b7395f3d59c64a57/p/667ce0d0f6bf463a8c2a3bcb4c2aa687)
 * [PyQT Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/                                                                                                                                         )
+
 ## Requirements
 The requirements are broken into multiple parts.
+
 ### Iteration 1
 * Ask the user for a type of sandwich (chicken $5.25, beef $6.25, tofu $5.75).
 * Have the program output the user’s sandwich selection to verify that the program is working correctly
+
 ### Iteration 2
 Add the following features to your first iteration:
 
@@ -34,6 +37,7 @@ Add the following features to your first iteration:
       * large $2.25
 * Have the program output the user’s beverage size selection, or lack of selection, to verify that the program is working correctly.
 * Have the program output the total cost so far.
+
 ### Iteration 3
 Add the following features to your first iteration:
 
@@ -46,6 +50,7 @@ Add the following features to your first iteration:
      * If the user inputs yes to mega-size, give them large fries at the large fries price instead of their small fries.
 * Have the program output the user’s fries selection to verify that the program is working correctly.
 * Adjust the program so the total cost only outputs to the user after their sandwich, drink, and fries selection.
+
 ### Iteration 4
 * Ask the user how many ketchup packets they would like (enter a positive integer; cost is $0.25 per packet).
 

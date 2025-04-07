@@ -3,11 +3,11 @@
 
 import sys
 
-from beverage import *
-from fries import *
-from input_utilities import InputUtils
+import beverage
+import fries
+import input_utilities
 from order import Order
-from sandwich import *
+import sandwich
 
 
 def get_python_version() -> str:
@@ -27,29 +27,29 @@ def get_sandwich() -> None:
     choices: list[str] = []
     types: list[str] = []
     prices: list[str] = []
-    for type in SandwichType:
+    for type in sandwich.SandwichType:
         types.append(type.value)
-    for price in SandwichPrice:
+    for price in sandwich.SandwichPrice:
         prices.append(f'${price.value:.2f}')
     for i in range(len(types)):
         choices.append(f'{types[i]} {prices[i]}')
 
-    choice = InputUtils.get_single_choice(title, prompt, choices)
+    choice = input_utilities.InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     # print(f'choice={choice}')
     match choice:
 
         case 'c':
-            order.sandwich_type = SandwichType.CHICKEN
-            order.sandwich_cost = SandwichPrice.CHICKEN.value
+            order.sandwich_type = sandwich.SandwichType.CHICKEN
+            order.sandwich_cost = sandwich.SandwichPrice.CHICKEN.value
 
         case 'b':
-            order.sandwich_type = SandwichType.BEEF
-            order.sandwich_cost = SandwichPrice.BEEF.value
+            order.sandwich_type = sandwich.SandwichType.BEEF
+            order.sandwich_cost = sandwich.SandwichPrice.BEEF.value
 
         case 't':
-            order.sandwich_type = SandwichType.TOFU
-            order.sandwich_cost = SandwichPrice.TOFU.value
+            order.sandwich_type = sandwich.SandwichType.TOFU
+            order.sandwich_cost = sandwich.SandwichPrice.TOFU.value
 
         case _:
             print(f'{choice} is not valid. Please try again.')
@@ -58,7 +58,7 @@ def get_sandwich() -> None:
 
 
 def get_beverage() -> None:
-    yesno = InputUtils.get_yesno_response("Do you want a beverage?", "Beverage")
+    yesno = input_utilities.InputUtils.get_yesno_response("Do you want a beverage?", "Beverage")
     if not yesno:
         order.beverage_size = None
         return
@@ -68,29 +68,29 @@ def get_beverage() -> None:
     choices: list[str] = []
     sizes: list[str] = []
     prices: list[str] = []
-    for size in BeverageSize:
+    for size in beverage.BeverageSize:
         sizes.append(size.value)
-    for price in BeveragePrice:
+    for price in beverage.BeveragePrice:
         prices.append(f'${price.value:.2f}')
     for i in range(len(sizes)):
         choices.append(f'{sizes[i]} {prices[i]}')
 
     # choice = input(prompt).lower().strip()
-    choice = InputUtils.get_single_choice(title, prompt, choices)
+    choice = input_utilities.InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     match choice:
 
         case 's':
-            order.beverage_size = BeverageSize.SMALL
-            order.beverage_cost = BeveragePrice.SMALL.value
+            order.beverage_size = beverage.BeverageSize.SMALL
+            order.beverage_cost = beverage.BeveragePrice.SMALL.value
 
         case 'm':
-            order.beverage_size = BeverageSize.MEDIUM
-            order.beverage_cost = BeveragePrice.MEDIUM.value
+            order.beverage_size = beverage.BeverageSize.MEDIUM
+            order.beverage_cost = beverage.BeveragePrice.MEDIUM.value
 
         case 'l':
-            order.beverage_size = BeverageSize.LARGE
-            order.beverage_cost = BeveragePrice.LARGE.value
+            order.beverage_size = beverage.BeverageSize.LARGE
+            order.beverage_cost = beverage.BeveragePrice.LARGE.value
 
         case _:
             print(f'{choice} is not valid. Please try again.')
@@ -99,7 +99,7 @@ def get_beverage() -> None:
 
 
 def get_fries() -> None:
-    yesno = InputUtils.get_yesno_response('Do you want fries?', 'French Fries')
+    yesno = input_utilities.InputUtils.get_yesno_response('Do you want fries?', 'French Fries')
     if not yesno:
         order.fries_size = None
         return
@@ -109,32 +109,32 @@ def get_fries() -> None:
     choices: list[str] = []
     sizes: list[str] = []
     prices: list[str] = []
-    for size in FriesSize:
+    for size in fries.FriesSize:
         sizes.append(size.value)
-    for price in FriesPrice:
+    for price in fries.FriesPrice:
         prices.append(f'${price.value:.2f}')
     for i in range(len(sizes)):
         choices.append(f'{sizes[i]} {prices[i]}')
 
-    choice = InputUtils.get_single_choice(title, prompt, choices)
+    choice = input_utilities.InputUtils.get_single_choice(title, prompt, choices)
     choice = choice.lower()[0]
     match choice:
 
         case 's':
-            order.fries_size = FriesSize.SMALL
-            order.fries_cost = FriesPrice.SMALL.value
-            yesno = InputUtils.get_yesno_response('Do you want to super-size to Large fries?', 'Super-size')
+            order.fries_size = fries.FriesSize.SMALL
+            order.fries_cost = fries.FriesPrice.SMALL.value
+            yesno = input_utilities.InputUtils.get_yesno_response('Do you want to super-size to Large fries?', 'Super-size')
             if yesno:
-                order.fries_size = FriesSize.LARGE
-                order.fries_cost = FriesPrice.LARGE.value
+                order.fries_size = fries.FriesSize.LARGE
+                order.fries_cost = fries.FriesPrice.LARGE.value
 
         case 'm':
-            order.fries_size = FriesSize.MEDIUM
-            order.fries_cost = FriesPrice.MEDIUM.value
+            order.fries_size = fries.FriesSize.MEDIUM
+            order.fries_cost = fries.FriesPrice.MEDIUM.value
 
         case 'l':
-            order.fries_size = FriesSize.LARGE
-            order.fries_cost = FriesPrice.LARGE.value
+            order.fries_size = fries.FriesSize.LARGE
+            order.fries_cost = fries.FriesPrice.LARGE.value
 
         case other:
             print(f'{choice} is not valid. Please try again.')
@@ -143,11 +143,11 @@ def get_fries() -> None:
 
 
 def get_ketchup_packets() -> None:
-    yesno = InputUtils.get_yesno_response("Do you want any ketchup packets?", "Ketchup Packets")
+    yesno = input_utilities.InputUtils.get_yesno_response("Do you want any ketchup packets?", "Ketchup Packets")
     if not yesno:
         return
 
-    n: int = InputUtils.get_whole_number( 'How many ketchup packets?', 'Ketchup Packets')
+    n: int = input_utilities.InputUtils.get_whole_number('How many ketchup packets?', 'Ketchup Packets')
 
     order.ketchup_packets = n
     order.ketchup_cost = order.ketchup_packets * order.KETCHUP_PACKET_COST

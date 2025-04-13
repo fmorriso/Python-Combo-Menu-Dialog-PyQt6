@@ -1,9 +1,9 @@
 # these are the beverage sizes and prices using symbols instead
 # of "magic numbers" and "magic strings"
-from enum import Enum
+from enum import Enum, StrEnum
 
 
-class BeverageSize(Enum):
+class BeverageSize(StrEnum):
     SMALL: str = 'Small'
     MEDIUM: str = 'Medium'
     LARGE: str = 'Large'

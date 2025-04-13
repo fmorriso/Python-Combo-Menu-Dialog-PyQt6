@@ -2,6 +2,7 @@
 # Author: Fred Morrison
 
 import sys
+from enum import StrEnum
 
 import beverage
 import fries
@@ -63,10 +64,10 @@ def get_beverage() -> None:
         order.beverage_size = None
         return
 
-    title: str = 'Sandwich Choice'
+    title: str = 'Beverage Choice'
     prompt: str = 'What size beverage would you like to order?'
     choices: list[str] = []
-    sizes: list[str] = []
+    sizes: list[StrEnum] = []
     prices: list[str] = []
     for size in beverage.BeverageSize:
         sizes.append(size.value)

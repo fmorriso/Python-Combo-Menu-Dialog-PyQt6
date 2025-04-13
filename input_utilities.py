@@ -68,7 +68,7 @@ class InputUtils:
 
     @staticmethod
     def get_single_choice(title: str, msg: str, choices: list[str], parent=None):
-        """get a single choide from a list of choices"""
+        """get a single choice from a list of choices"""
         app = QApplication(sys.argv)
         # flags
         # force user to choose one of the available choices before returning

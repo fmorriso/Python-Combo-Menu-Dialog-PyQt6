@@ -4,7 +4,7 @@
 
 | Tool    |  Version |
 |:--------|---------:|
-| Python  |   3.13.2 |
+| Python  |   3.13.3 |
 | PyQt6   |    6.9.0 |
 | VSCode  |   1.99.0 |
 | PyCharm | 2024.3.5 |
@@ -16,6 +16,7 @@
 | 2025-04-06 | move from GitLab to GitHub and rename |
 | 2025-04-07 | streamline imports                    |
 | 2025-04-13 | add requirements.txt                  |
+| 2025-05-14 | verify code runs with python 3.13.3   |
 
 ## References
 * [PLTW Project 3.1.3](https://pltw.read.inkling.com/a/b/71ce293152cf4873b7395f3d59c64a57/p/667ce0d0f6bf463a8c2a3bcb4c2aa687)

@@ -3,16 +3,21 @@
 
 import sys
 from enum import StrEnum
+from importlib.metadata import version
 
 import beverage
 import fries
 import input_utilities
-from order import Order
 import sandwich
+from order import Order
 
 
 def get_python_version() -> str:
     return f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}'
+
+
+def get_package_version(package_name: str) -> str:
+    return version(package_name)
 
 
 def start_new_order() -> Order:
@@ -124,7 +129,8 @@ def get_fries() -> None:
         case 's':
             order.fries_size = fries.FriesSize.SMALL
             order.fries_cost = fries.FriesPrice.SMALL.value
-            yesno = input_utilities.InputUtils.get_yesno_response('Do you want to super-size to Large fries?', 'Super-size')
+            yesno = input_utilities.InputUtils.get_yesno_response('Do you want to super-size to Large fries?',
+                                                                  'Super-size')
             if yesno:
                 order.fries_size = fries.FriesSize.LARGE
                 order.fries_cost = fries.FriesPrice.LARGE.value
@@ -164,6 +170,7 @@ def check_for_discount():
 
 if __name__ == '__main__':
     print(f'Python version {get_python_version()}')
+    print(f'pyqt6 version: {get_package_version("pyqt6")}')
     order: Order = start_new_order()
 
     get_sandwich()

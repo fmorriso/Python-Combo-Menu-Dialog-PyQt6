@@ -1,4 +1,4 @@
-from typing import ClassVar, Final
+from typing import Final
 
 from beverage import BeverageSize
 from fries import FriesSize

@@ -1,25 +1,29 @@
 import decimal
 import sys
 from decimal import Decimal
+from typing import ClassVar
 
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
 
 class InputUtils:
+
+    response: ClassVar = None
+
     @staticmethod
     def get_whole_number(title: str, msg: str, parent=None) -> int:
         """get a whole number as directed by the specified message"""
         app = QApplication(sys.argv)
-        waitingForValidInput = True
+        waiting_for_valid_input = True
         # trap user in dialog until they enter a valid value and click OK
-        while waitingForValidInput:
+        while waiting_for_valid_input:
             # response will be a tuple of the form (value, True/False} where True
             # means the OK button was preseed and False means the Cancel button was pressed
             response = QtWidgets.QInputDialog.getInt(parent, msg, title)
             # print(f'{response}=')
             if response[1]:
-                waitingForValidInput = False
+                waiting_for_valid_input = False
 
         n: int = response[0]
         app.closeAllWindows()

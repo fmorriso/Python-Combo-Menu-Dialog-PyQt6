@@ -1,4 +1,4 @@
-from typing import ClassVar
+from typing import ClassVar, Final
 
 from beverage import BeverageSize
 from fries import FriesSize
@@ -6,7 +6,8 @@ from sandwich import SandwichType
 
 
 class Order:
-    KETCHUP_PACKET_COST: ClassVar[float] = 0.25
+
+    KETCHUP_PACKET_COST: Final[float] = 0.25
 
     def __init__(self):
         self.total_price: float = 0.0

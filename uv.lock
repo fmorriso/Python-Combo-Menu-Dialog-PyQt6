@@ -8,10 +8,14 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pyqt6" },
+    { name = "pyqt6-sip" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pyqt6", specifier = "==6.9.0" }]
+requires-dist = [
+    { name = "pyqt6", specifier = "==6.9.0" },
+    { name = "pyqt6-sip", specifier = ">=13.12.0" },
+]
 
 [[package]]
 name = "pyqt6"
